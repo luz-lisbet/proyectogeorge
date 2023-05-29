@@ -22,12 +22,12 @@
   </div>
 
   <div>
-    <%= form.label :description, "Descripción", style: "display: block" %>
+    <%= form.label :description, "Descripción_producto", style: "display: block" %>
     <%= form.text_area :description %>
   </div>
 
   <div>
-    <%= form.label :category_id, "Categoría", style: "display: block" %>
+    <%= form.label :category_id, "Categoría_producto", style: "display: block" %>
     <%= form.collection_select :category_id, Category.all, :id, :name %>
   </div>
 
