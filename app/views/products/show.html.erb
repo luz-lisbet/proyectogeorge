@@ -1,0 +1,33 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @product %>
+
+<br>
+<br>
+
+ <h2>Movimientos</h2>
+  <table>
+  <tr>
+    <th>Tipo</th>
+    <th>Descripción</th>
+    <th>Cantidad</th>
+  </tr>
+ 
+  <% @product.movements.each do |movement| %>
+    <tr>
+      <td><%= movement.typeMovementName %></td>
+      <td><%= movement.description %></td>
+      <td><%= movement.quantity %></td>    
+    </tr>
+    
+    <br>
+  <% end %>
+ </table>
+
+<div>
+  <%= link_to "Editar", edit_product_path(@product) %> |
+  <%= link_to "Lista de Ptroductos", products_path %>
+  <br>
+  <br>
+  <%= button_to "Eliminar", @product, method: :delete %>
+</div>

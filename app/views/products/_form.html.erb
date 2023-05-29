@@ -1,0 +1,62 @@
+<%= form_with(model: product) do |form| %>
+  <% if product.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+        <% product.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, "Nombre", style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :price, "Precio", style: "display: block" %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div>
+    <%= form.label :description, "Descripción", style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :category_id, "Categoría", style: "display: block" %>
+    <%= form.collection_select :category_id, Category.all, :id, :name %>
+  </div>
+
+<br>
+<h2>Movimientos</h2>
+  <table>
+    <tr>
+      <th>Tipo</th>
+      <th>Descrición</th>
+      <th>Cantidad</th>
+    </tr>
+  
+  <%= form.fields_for :movements do |fmov| %>
+    <tr>
+      <%# OPC1: Manejamos el campo tipo de movimiento con una lista %>
+      <%#= fmov.select(:typemov, [["Entrada", 1],["Salida", 0]])%>
+      
+      <%# OPC2: Manejamos el campo tipo de movimiento con un método de clase %>
+      <td><%= fmov.select(:typemov, Movement.typeMovements) %></td>
+      <td><%= fmov.text_field :description %></td>
+      <td><%= fmov.number_field :quantity %></td>
+    </tr>
+    <br>
+  <% end %>
+  </table>
+
+  <br>
+  <br>
+  <div>
+    <%= form.submit "Actualizar" %>
+  </div>
+<% end %>

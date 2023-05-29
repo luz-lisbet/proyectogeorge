@@ -1,0 +1,22 @@
+product
+
+name: string
+price: float
+description: text
+
+
+1. Crear Aplicación
+
+rails new Tienda
+
+2. Lanzamos el servidor
+
+rails server
+
+3. rails g scaffold Product name:string price:float description:text
+
+4. rails db:migrate
+
+5. validates :name, :price, : description,  presence: true
+
+
